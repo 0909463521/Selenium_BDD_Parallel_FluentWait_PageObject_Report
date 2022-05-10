@@ -5,11 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import services.FluentWaitCode;
 
-//rahulonlinetutor@gmail.com
 public class LoginPage extends FluentWaitCode {
 
 
-//     WebDriver driver ; không nên tạo biến bừa bãi
     // Find by Relative
     By email=By.xpath("//input[@name='email']");
     By password=By.xpath("//input[@name='password']");
