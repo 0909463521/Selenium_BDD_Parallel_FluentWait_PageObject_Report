@@ -33,7 +33,7 @@ public class ITestListenerImpl extends FluentWaitCode implements ITestListener {
 
 	@Override
 	public void onTestStart(ITestResult iTestResult) {
-
+		System.out.println("start test....");
 
 	}
 

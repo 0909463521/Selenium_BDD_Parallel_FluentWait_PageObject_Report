@@ -16,6 +16,7 @@ public class testHook extends FluentWaitCode {
     public void beforeScenario(Scenario scenario) {
         System.out.println("Started execution for the scenario : " + scenario.getName());
         FluentWaitCode.startNode(scenario.getName());
+        System.out.println(extentNodeMap);
     }
 
     @After

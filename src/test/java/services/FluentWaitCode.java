@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class FluentWaitCode {
 
-    String driverPath = "/Users/bachvu/Desktop/Explicit-Fluentwait-Selenium/chromedriver";
+    String driverPath = "/Users/bachvu/Documents/GitHub/BDD_Parallel_FluentWait_PageObject_Report/chromedriver";
 
 
 
@@ -47,6 +47,9 @@ public class FluentWaitCode {
 
     public static ExtentTest features;
 
+    // TODO biến lưu trữ các scenario trong report
+    // TODO mỗi Thread ID sẽ match với mỗi Node trong report
+    // TODO biến extentNodeMap nay global list object chua cac object ( chua thread ID tuong ung cac Node )
     public static Map<Integer, ExtentTest> extentNodeMap = new HashMap();
 
 
@@ -97,7 +100,7 @@ public class FluentWaitCode {
         System.out.println(locator);
 
         FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(100))
+                .withTimeout(Duration.ofSeconds(15))
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(Exception.class);
 
@@ -157,12 +160,16 @@ public class FluentWaitCode {
     }
 
 
+    // TODO function tao node dua theo moi scenario ( node ) trong report -> moi senario tuong ung la 1 thread
     public static synchronized ExtentTest startNode(String nodeName) {
         ExtentTest 	threadnode = features.createNode(nodeName);
         extentNodeMap.put((int) (long) (Thread.currentThread().getId()), threadnode);
         return threadnode;
     }
+    // TODO function get Node ( thread ) hien tai de them value pass fail cua cac step
+    //TODO moi thread tuong ung voi node trong bien extendNodeMap ( Object ) -> se lay Object node ra theo Thread ID
     public static synchronized ExtentTest getNode() {
+        System.out.println(Thread.currentThread().getId());
         return (ExtentTest) extentNodeMap.get((int) (long) (Thread.currentThread().getId()));
     }
     public static File  captureScreenShot(WebDriver driver) throws IOException {
